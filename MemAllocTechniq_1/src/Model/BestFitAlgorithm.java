@@ -1,6 +1,8 @@
 package Model;
 import Controller.Controller;
 import java.util.ArrayList;
+
+import org.iiitb.model.bean.InvalidMemoryUnitException;
 public class BestFitAlgorithm 
 {
 	int jobSize;
@@ -43,7 +45,7 @@ public class BestFitAlgorithm
 	}
 	
  
-	public ArrayList<Fragment> input_from_Controller_to_Model(int[] in)
+	public ArrayList<Fragment> input_from_Controller_to_Model(int[] in) throws InvalidMemoryUnitException
 	{
 		Fragment unit5 = new Fragment(10, false, 10);
 		fragments.add(unit5);

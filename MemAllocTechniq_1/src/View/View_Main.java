@@ -1,6 +1,9 @@
 package View;
 
 import java.util.ArrayList;
+
+import org.iiitb.model.bean.InvalidMemoryUnitException;
+
 import Controller.Controller;
 import Model.Fragment;       // Also v can keep a 1 copy of Fragment class in VIEW itself...
 
@@ -52,7 +55,7 @@ public class View_Main
 
 	
 	// for a time being i kept main in VIEW but v can shift it in Controller back after completing remaining part
-	public static void main(String args[])
+	public static void main(String args[]) throws InvalidMemoryUnitException
 	{
 		int arr[] = { 50,1,2,3,4,5,7};  // a sample input
 		

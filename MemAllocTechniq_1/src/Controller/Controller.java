@@ -3,6 +3,8 @@ package Controller;
 
 import java.util.ArrayList;
 
+import org.iiitb.model.bean.InvalidMemoryUnitException;
+
 import Model.*;
 import View.View_Main;
 
@@ -23,7 +25,7 @@ public class Controller
 	}
 	
 	
-	public void input_from_View_to_Controller(int algo, int[] in)
+	public void input_from_View_to_Controller(int algo, int[] in) throws InvalidMemoryUnitException
 	{
 		View_Main v = new View_Main();
 		switch(algo)  // 1 for FIRST FIT, 2 FOR BEST , 3 for WORST and 4 for all

@@ -1,6 +1,8 @@
 package Model;
 import java.util.ArrayList;
 
+import org.iiitb.model.bean.InvalidMemoryUnitException;
+
 import Controller.Controller;
 
 public class FirstFitAlgorithm 
@@ -35,7 +37,7 @@ public class FirstFitAlgorithm
 	
 
 
-	public ArrayList<Fragment> input_from_Controller_to_Model(int[] in)
+	public ArrayList<Fragment> input_from_Controller_to_Model(int[] in) throws InvalidMemoryUnitException
 	{
 		
 		//create new fragments with partition size , status- false since not allocated 
