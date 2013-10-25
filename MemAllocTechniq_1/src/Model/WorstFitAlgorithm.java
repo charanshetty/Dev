@@ -45,16 +45,16 @@ public class WorstFitAlgorithm
  
 	public ArrayList<Fragment> input_from_Controller_to_Model(int[] in) throws InvalidMemoryUnitException
 	{
-		Fragment unit5 = new Fragment(10, false, 10);
+		Fragment unit5 = new Fragment(1,10, false, 10);
 		fragments.add(unit5);
 		
-		Fragment unit1 = new Fragment(20, false, 20);
+		Fragment unit1 = new Fragment(2,20, false, 20);
 		fragments.add(unit1);
 		
-		Fragment unit2 = new Fragment(30, false, 30);
+		Fragment unit2 = new Fragment(3,30, false, 30);
 		fragments.add(unit2);
 		//int Jobs[] = { 50,1,2,3,4 };
-		Fragment unit3 = new Fragment(40, false, 40);
+		Fragment unit3 = new Fragment(4,40, false, 40);
 		fragments.add(unit3);
 		
 		WorstFitAlgorithm ob = new WorstFitAlgorithm();

@@ -42,16 +42,16 @@ public class FirstFitAlgorithm
 		
 		//create new fragments with partition size , status- false since not allocated 
 		//remaining size = partition size
-		Fragment unit5 = new Fragment(100, false, 100);
+		Fragment unit5 = new Fragment(1,100, false, 100);
 		fragments.add(unit5);
 		
-		Fragment unit1 = new Fragment(80, false, 80);
+		Fragment unit1 = new Fragment(2,80, false, 80);
 		fragments.add(unit1);
 		
-		Fragment unit2 = new Fragment(70, false, 70);
+		Fragment unit2 = new Fragment(3,70, false, 70);
 		fragments.add(unit2);
 		
-		Fragment unit3 = new Fragment(68, false, 68);
+		Fragment unit3 = new Fragment(4,68, false, 68);
 		fragments.add(unit3);
 		
 		FirstFitAlgorithm ob = new FirstFitAlgorithm(); //create the object for parent class

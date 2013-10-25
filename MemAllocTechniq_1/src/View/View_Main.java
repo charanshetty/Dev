@@ -13,7 +13,7 @@ import Model.Fragment;       // Also v can keep a 1 copy of Fragment class in VI
 public class View_Main 
 {
 	
-	// This is just a helper function... You(Mayur) can modify this function as per requirementssss...
+	// This is just a helper function... Youextends FirstFitAlgorithm(Mayur) can modify this function as per requirementssss...
 	
 	// 
 	public void output_from_Controller_to_View(ArrayList <Fragment> fragments, int[] mem_not_all, int count,int[] in)
@@ -33,8 +33,8 @@ public class View_Main
 			if (unit.status == true) 
 			{
 //				for (int i=0;i<in.length;i++){
-//					if(in[i]==(unit.getMemsize()-unit.getRemaining_size())){
-				System.out.print("Allocated memory blocks : "+unit.getMemsize()+" to process P"+unit.getProcess_id()+" with size "+(unit.getMemsize()-unit.getRemaining_size()));
+//					if(in[i]==(unit.getMemsize()-unit.getRemaini ng_size())){
+				System.out.print("Allocated memory block no. "+unit.getFragment_id()+" with size "+unit.getMemsize()+" to process P"+unit.getProcess_id()+" with size "+(unit.getMemsize()-unit.getRemaining_size()));
 				
 				System.out.println(",,, Remaining fragment Size : "+ unit.getRemaining_size());
 //				}}

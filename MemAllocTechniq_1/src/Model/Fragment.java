@@ -5,22 +5,32 @@ import org.iiitb.model.bean.InvalidMemoryUnitException;
 import org.iiitb.model.bean.Memory;
 import org.iiitb.model.bean.MemoryUnit;
 
-public class Fragment extends FirstFitAlgorithm 
+public class Fragment  
 {
 	Memory<MemoryUnit> m = new Memory<MemoryUnit>(1024);
 	int process_id=-1;
+	int fragment_id;
 	static int prevloc =0;
 	int memsize;
 	public boolean status;
 	int remaining_size ;
 
-	public Fragment(int size,boolean status,int remaining_size) throws InvalidMemoryUnitException
+	public Fragment(int fragment_id,int size,boolean status,int remaining_size) throws InvalidMemoryUnitException
 	{   m.add(new MemoryUnit(prevloc, size));
+		this.fragment_id=fragment_id;
 		this.remaining_size = remaining_size;
 		this.memsize = size;
 		this.status = status;
 		prevloc=prevloc+size;
 		System.out.println(m);
+	}
+
+	public int getFragment_id() {
+		return fragment_id;
+	}
+
+	public void setFragment_id(int fragment_id) {
+		this.fragment_id = fragment_id;
 	}
 
 	//getter method for partition size
