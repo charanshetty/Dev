@@ -14,10 +14,12 @@ public class NextFitAlgorithm
 	
 	static int not_allocated_memory[] = new int[30];
 	int i=0;
-	static int count = 0;
 	static int position = 0;
+	static int count = 0;
+	static int process_count=0;
 	Random r = new Random ();
 	static Boolean flag = false;
+	Fragment f= new Fragment();
 	//function to implement first fit algorithm for each process size
 	public void nextFit(int jobSize,int process_id, ArrayList<Fragment> fragments)
 	{
@@ -54,7 +56,7 @@ public class NextFitAlgorithm
 	  
 	}
 	
-	public ArrayList<Fragment> input_from_Controller_to_Model(int[] in) throws InvalidMemoryUnitException
+	/*public ArrayList<Fragment> input_from_Controller_to_Model(ArrayList <process> processes) throws InvalidMemoryUnitException
 	{
 		
 		//create new fragments with partition size , status- false since not allocated 
@@ -74,10 +76,10 @@ public class NextFitAlgorithm
 		NextFitAlgorithm ob = new NextFitAlgorithm(); //create the object for parent class
 		
 		
-		int Jobs[] = in; 
-		for (int i = 0; i < Jobs.length; i++) 
+		//int Jobs[] = in; 
+		for (int i = 0; i < processes.size(); i++) 
 		{
-			ob.nextFit(Jobs[i],i, fragments);
+			ob.nextFit(processes.get(i).getMem_size(),i, fragments);
 		}
 			
 		Controller c = new Controller();
@@ -85,6 +87,36 @@ public class NextFitAlgorithm
 		
 		return fragments;						 
 
+	} */
+	public ArrayList<Fragment> input_from_Controller_to_Model(ArrayList <process> processes) throws InvalidMemoryUnitException
+	{
+		
+		//create new fragments with partition size , status- false since not allocated 
+		//remaining size = partition size
+		if(process_count==0)
+		{
+			System.out.println("inside process_count");
+			fragments=f.create_Fragment();
+		}
+		
+		NextFitAlgorithm  nf = new NextFitAlgorithm (); //create the object for parent class
+		
+		
+		//int Jobs[] = in; 
+		for (int i = process_count; i < processes.size(); i++) 
+		{
+			nf.nextFit(processes.get(i).getMem_size(),i, fragments);
+			process_count++;
+		}
+		
+	
+		
+		Controller c = new Controller();
+		c.not_allocated(not_allocated_memory,count);
+		
+		return fragments;						 
+
 	} 
+
 
 }

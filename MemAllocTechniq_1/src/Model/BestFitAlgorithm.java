@@ -11,7 +11,8 @@ public class BestFitAlgorithm
 	static int not_allocated_memory[] = new int[30];
 	int i=0;
 	static int count = 0;
-	
+	static int process_count=0;
+	Fragment f= new Fragment();
 	public void bestFit(int jobSize,int process_id, ArrayList<Fragment> fragments)
 	{
 		int min = 100000;
@@ -45,7 +46,7 @@ public class BestFitAlgorithm
 	}
 	
  
-	public ArrayList<Fragment> input_from_Controller_to_Model(int[] in) throws InvalidMemoryUnitException
+	/*public ArrayList<Fragment> input_from_Controller_to_Model(ArrayList <process> processes) throws InvalidMemoryUnitException
 	{
 		Fragment unit5 = new Fragment(1,10, false, 10);
 		fragments.add(unit5);
@@ -61,12 +62,12 @@ public class BestFitAlgorithm
 		
 		BestFitAlgorithm ob = new BestFitAlgorithm();
 		
-		int Jobs[] = in;
+		//int Jobs[] = in;
 		
 		
-		for (int i = 0; i < Jobs.length; i++) 
+		for (int i = 0; i < processes.size(); i++) 
 		{
-			ob.bestFit(Jobs[i],i, fragments);
+			ob.bestFit(processes.get(i).getMem_size(),i, fragments);
 		}
 		
 	
@@ -76,6 +77,35 @@ public class BestFitAlgorithm
 		
 	return fragments;
 
-	}
+	}*/
+	public ArrayList<Fragment> input_from_Controller_to_Model(ArrayList <process> processes) throws InvalidMemoryUnitException
+	{
+		
+		//create new fragments with partition size , status- false since not allocated 
+		//remaining size = partition size
+		if(process_count==0)
+		{
+			System.out.println("inside process_count");
+			fragments=f.create_Fragment();
+		}
+		
+		BestFitAlgorithm ob = new BestFitAlgorithm(); //create the object for parent class
+		
+		
+		//int Jobs[] = in; 
+		for (int i = process_count; i < processes.size(); i++) 
+		{
+			ob.bestFit(processes.get(i).getMem_size(),i, fragments);
+			process_count++;
+		}
+		
+	
+		
+		Controller c = new Controller();
+		c.not_allocated(not_allocated_memory,count);
+		
+		return fragments;						 
+
+	} 
 
 }

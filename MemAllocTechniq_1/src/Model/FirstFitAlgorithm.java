@@ -8,15 +8,18 @@ import Controller.Controller;
 public class FirstFitAlgorithm 
 {	
 	int jobSize; //input process memory size
-	private static ArrayList<Fragment> fragments = new ArrayList<>();  // Arraylist of type Fragment
-	
+	  // Arraylist of type Fragment	
 	static int not_allocated_memory[] = new int[30];
 	int i=0;
 	static int count = 0;
+	static int process_count=0;
+	Fragment f= new Fragment();
+	static ArrayList<Fragment> fragments=null;
 	
-	//function to implement first fit algorithm for each process size
-	public void firstFit(int jobSize,int process_id, ArrayList<Fragment> fragments)
+	//function to imple ment first fit algorithm for each process size
+	public void firstFit(int jobSize,int process_id, ArrayList<Fragment> fragments) throws InvalidMemoryUnitException
 	{
+		
 		for(Fragment unit : fragments) //for loop for arraylist
 		{
 			if((jobSize <= unit.getMemsize()) && (!unit.getstatus())) //find the first unallocated partition 
@@ -27,7 +30,7 @@ public class FirstFitAlgorithm
 				break; //exit when the process is allocated
 			}else if (fragments.indexOf(unit) + 1 == fragments.size()) 
 			{
-				not_allocated_memory[i]= jobSize;
+				not_allocated_memory[count]= jobSize;
 				//System.out.println("This Process HAS NOT BEEN ALLOCATED MEMORY : "+ jobSize);
 				count++;
 				i++;
@@ -37,30 +40,25 @@ public class FirstFitAlgorithm
 	
 
 
-	public ArrayList<Fragment> input_from_Controller_to_Model(int[] in) throws InvalidMemoryUnitException
+	public ArrayList<Fragment> input_from_Controller_to_Model(ArrayList <process> processes) throws InvalidMemoryUnitException
 	{
 		
 		//create new fragments with partition size , status- false since not allocated 
 		//remaining size = partition size
-		Fragment unit5 = new Fragment(1,100, false, 100);
-		fragments.add(unit5);
-		
-		Fragment unit1 = new Fragment(2,80, false, 80);
-		fragments.add(unit1);
-		
-		Fragment unit2 = new Fragment(3,70, false, 70);
-		fragments.add(unit2);
-		
-		Fragment unit3 = new Fragment(4,68, false, 68);
-		fragments.add(unit3);
+		if(process_count==0)
+		{
+			System.out.println("inside process_count");
+			fragments=f.create_Fragment();
+		}
 		
 		FirstFitAlgorithm ob = new FirstFitAlgorithm(); //create the object for parent class
 		
 		
-		int Jobs[] = in; 
-		for (int i = 0; i < Jobs.length; i++) 
+		//int Jobs[] = in; 
+		for (int i = process_count; i < processes.size(); i++) 
 		{
-			ob.firstFit(Jobs[i],i, fragments);
+			ob.firstFit(processes.get(i).getMem_size(),i, fragments);
+			process_count++;
 		}
 		
 	
