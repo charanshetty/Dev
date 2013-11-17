@@ -70,27 +70,39 @@ public void actionPerformed(ActionEvent arg0) {
 		Object o =arg0.getSource();
 		if(o.equals(Next)){
 	process p =new process();
-	p.setProcess_id(Integer.parseInt(process_id.getText()));
+	if((Integer.parseInt(process_id.getText())>=0)&&(Integer.parseInt(RequiredSize.getText())>0)){
+	System.out.println(Integer.parseInt(process_id.getText()));
+		p.setProcess_id(Integer.parseInt(process_id.getText()));
 	p.setMem_size(Integer.parseInt(RequiredSize.getText()));
-	
 	processes.add(p);
 	c.input_from_View_to_Controller(1,processes);
+	}
+	else 
+	{		JOptionPane.showMessageDialog(this,"Invalid processID or memory size");
+	}
+	
 	process_id.setText(null); 
 	RequiredSize.setText(null);
 	}
 	else if(o.equals(Finish)){
 		process p =new process();
+		if((Integer.parseInt(process_id.getText())>=0)&&(Integer.parseInt(RequiredSize.getText())>0)){
 		p.setProcess_id(Integer.parseInt(process_id.getText()));
 		p.setMem_size(Integer.parseInt(RequiredSize.getText()));
-		
 		processes.add(p);
 		c.input_from_View_to_Controller(1,processes);
+		}
+		else 
+		{		JOptionPane.showMessageDialog(this,"Invalid processID or memory size");
+		}
+		
 		setVisible(false);
 		flag=true;
 		dispose();}}
 	catch(Exception ex)
 	{
 		JOptionPane.showMessageDialog(this,"Error occurred!!!"+ex);
+JOptionPane.showMessageDialog(this,"Error occurred!!!"+ex);
 	}
 	// TODO Auto-generated method stub
 	
@@ -125,6 +137,7 @@ public void actionPerformed(ActionEvent arg0) {
 
 		}
 		//for loop showing 
+		System.out.println("count "+count);
 		for(int i = 0; i < count; i++) 
 		{  				for (int x=0;x<processes.size();x++){
 			if(processes.get(x).getMem_size()==mem_not_all[i]){

@@ -9,12 +9,11 @@ public class WorstFitAlgorithm
 	private static ArrayList<Fragment> fragments = new ArrayList<>();
 	static int process_count=0;
 	Fragment f= new Fragment();
-	static int not_allocated_memory[] = new int[30];
-	int i=0;
-	static int count = 0;
 	
-	public void worstFit(int jobSize,int process_id, ArrayList<Fragment> fragments)
+	
+	public boolean worstFit(int jobSize,int process_id, ArrayList<Fragment> fragments)
 	{
+		boolean flag=false;
 		int max = 0;
 		for (Fragment unit : fragments) 
 		{
@@ -31,56 +30,20 @@ public class WorstFitAlgorithm
 				unit.setstatus();
 				unit.setRemaining_size(jobSize, unit.getMemsize());
 				unit.setProcess_id(process_id);
+				flag=true;
 				break;
 		    }
-			else if (fragments.indexOf(unit) + 1 == fragments.size())
-			{
-				not_allocated_memory[i]= jobSize;
-				//System.out.println("This Process HAS NOT BEEN ALLOCATED MEMORY : "+ jobSize);
-				count++;
-				i++;
-			}
+			
 		}	
+		return flag;
 	}
 	
  
-	/*public ArrayList<Fragment> input_from_Controller_to_Model(ArrayList <process> processes) throws InvalidMemoryUnitException
-	{
-		Fragment unit5 = new Fragment(1,10, false, 10);
-		fragments.add(unit5);
-		
-		Fragment unit1 = new Fragment(2,20, false, 20);
-		fragments.add(unit1);
-		
-		Fragment unit2 = new Fragment(3,30, false, 30);
-		fragments.add(unit2);
-		//int Jobs[] = { 50,1,2,3,4 };
-		Fragment unit3 = new Fragment(4,40, false, 40);
-		fragments.add(unit3);
-		
-		WorstFitAlgorithm ob = new WorstFitAlgorithm();
-		
-		//int Jobs[] = in;
-		
-		
-		for (int i = 0; i < processes.size(); i++) 
-		{
-			ob.worstFit(processes.get(i).getMem_size(),i, fragments);
-		}
-		
 	
-		
-		Controller c = new Controller();
-		c.not_allocated(not_allocated_memory,count);
-		
-	return fragments;
-
-	}*/
 	public ArrayList<Fragment> input_from_Controller_to_Model(ArrayList <process> processes) throws InvalidMemoryUnitException
 	{
 		
-		//create new fragments with partition size , status- false since not allocated 
-		//remaining size = partition size
+		boolean flag=false;
 		if(process_count==0)
 		{
 			System.out.println("inside process_count");
@@ -90,19 +53,12 @@ public class WorstFitAlgorithm
 		WorstFitAlgorithm  wf = new WorstFitAlgorithm (); //create the object for parent class
 		
 		
-		//int Jobs[] = in; 
-		for (int i = process_count; i < processes.size(); i++) 
-		{
-			wf.worstFit(processes.get(i).getMem_size(),i, fragments);
+		
+		
+			flag=wf.worstFit(processes.get(process_count).getMem_size(),process_count, fragments);
+			processes.get(process_count).setWf_status(flag);
 			process_count++;
-		}
-		
-	
-		
-		Controller c = new Controller();
-		c.not_allocated(not_allocated_memory,count);
-		
-		return fragments;						 
+			return fragments;						 
 
 	} 
 

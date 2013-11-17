@@ -9,17 +9,25 @@ import org.iiitb.model.bean.MemoryUnit;
 
 public class Fragment  
 {
-	 static Memory<MemoryUnit> m = new Memory<MemoryUnit>(1024);
-	 static ArrayList<Fragment> fragments = new ArrayList<>();
+	static  Memory<MemoryUnit> m ;
+	 ArrayList<Fragment> fragments = new ArrayList<>();
+	  //ArrayList<Fragment> fragments = new ArrayList<>();
 	int process_id=-1;
 	int fragment_id;
-	static int prevloc =0;
-	int memsize;
+	/*static int prevloc =0;
+	static int memsize;*/
+	static int count=0;
+ 	static int prevloc =0;
+	  int memsize;
 	public boolean status;
 	int remaining_size ;
 	public Fragment()
 	{
 		
+	}
+	public void set_Size(int mem_size)
+	{
+		m=new Memory<MemoryUnit>(mem_size);
 	}
 	public Fragment(int fragment_id,int size,boolean status,int remaining_size) throws InvalidMemoryUnitException
 	{   m.add(new MemoryUnit(prevloc, size));
@@ -78,19 +86,24 @@ public class Fragment
 	}
 	public ArrayList<Fragment>  create_Fragment() throws InvalidMemoryUnitException
 	{
-		
-			Fragment unit5 = new Fragment(1,100, false, 100);
+			if(count>0)
+			{
+				prevloc=0;
+				//fragments.clear();
+			}
+			Fragment unit5 = new Fragment(1,132, false, 0);
 			fragments.add(unit5);
 			
-			Fragment unit1 = new Fragment(2,80, false, 80);
+			Fragment unit1 = new Fragment(2,258, false, 0);
 			fragments.add(unit1);
 			
-			Fragment unit2 = new Fragment(3,70, false, 70);
+			Fragment unit2 = new Fragment(3,110, false, 0);
 			fragments.add(unit2);
 			
-			Fragment unit3 = new Fragment(4,68, false, 68);
+			Fragment unit3 = new Fragment(4,524, false, 0);
 			fragments.add(unit3);
 			System.out.println(m);
+			count++;
 		return fragments;
 	}
 }
