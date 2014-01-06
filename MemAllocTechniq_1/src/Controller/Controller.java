@@ -64,5 +64,42 @@ public class Controller
 		 
 	
 	}
-
+	public  ArrayList<Fragment> clear_input_from_View_to_Controller(int algo, int p_id) throws InvalidMemoryUnitException
+	{
+		//View_FragMain v = new View_FragMain();
+		switch(algo)  // 1 for FIRST FIT, 2 FOR BEST , 3 for WORST and 4 for all
+		{
+		 case 1 : 	FirstFitAlgorithm ob1 = new FirstFitAlgorithm();
+		 			
+			 		fragments = ob1.clear_input_from_Controller_to_Model(p_id);	 
+			 		//v.output_from_Controller_to_View(fragments,mem_not_all,x,processes); // a funtion in view
+			 		
+			 		break;
+			 		
+		 case 2 : 	BestFitAlgorithm ob2 = new BestFitAlgorithm();
+		 			fragments = ob2.clear_input_from_Controller_to_Model(p_id);	 
+		 			//v.output_from_Controller_to_View(fragments,mem_not_all,x,processes);
+		 			break;
+		 			
+		 case 4 : 	WorstFitAlgorithm ob3 = new WorstFitAlgorithm();
+		 			fragments = ob3.clear_input_from_Controller_to_Model(p_id);	 
+		 			//v.output_from_Controller_to_View(fragments,mem_not_all,x,processes);
+		 			break;
+		 			
+		 case 3 : 	NextFitAlgorithm  ob4 = new NextFitAlgorithm() ;
+			 		fragments = ob4.clear_input_from_Controller_to_Model(p_id);	 
+			//v.output_from_Controller_to_View(fragments,mem_not_all,x,processes);
+					break;
+		 case 5: break;			
+		 
+		 default : System.out.println("ERROR... Pls provide '1' for first fit, '2' for best and '3' for worst fit");
+		 
+		}
+		 
+		
+		System.out.println("size"+fragments.size());
+		return fragments;
+		 
+	
+	}
 }

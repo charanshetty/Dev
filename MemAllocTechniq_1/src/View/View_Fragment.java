@@ -62,12 +62,15 @@ public class View_Fragment extends JPanel{
 	 }*/
 	public void paintComponent(Graphics g) 
 	{
+		
 		//textarea.setText("");
 	//	System.out.println("inside paint");
 		size=0;
 		offset=0;
 		//j.setText("hello");
-		g.setColor(Color.GRAY);
+		g.setColor(Color.gray);
+
+		 g.fillRect(100+offset/4, 50,256 , 70);
        // g.drawLine(100, 0, 100, 120);
        
        // g.drawLine(0, 50, 500, 50);
@@ -83,6 +86,7 @@ public class View_Fragment extends JPanel{
         //	System.out.println("segment size:"+unit.getMemsize()+"  remaining size:"+(unit.getMemsize()-unit.getRemaining_size()));
 			if (unit.status == true) 
 			{
+				System.out.println(unit.getProcess_id());
 				g.setColor(Color.blue);
 				
                 g.fillRect(100+offset/4, 50, (unit.getMemsize()-unit.getRemaining_size())/4, 70); 

@@ -19,60 +19,17 @@ public class View_Fragment3 extends JPanel {
 	 int size=0;
 	 int offset=0;
 	 JTextArea textarea;
-	 
-	/* public View_Fragment3()
-	 {
-		this.setLayout(null);
-		  textarea= new JTextArea(50,50); //Result is stored in there
-		//textarea.setBounds(170,130, 50,50);
-			//textarea.setSize(10,10);
-	        textarea.setEditable(false);
-	        textarea.setLineWrap(true);
-	        JScrollPane scroll= new JScrollPane(textarea);
-	        scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-	        textarea.setWrapStyleWord(true);
-	       // textarea.setBorder(new TitledBorder(new EtchedBorder(), "Result"));
-	      scroll.setBounds(170,130, 200,150);
-	        this.add(scroll);
-	    //s    Point p=textarea.getLocation();
-	       // System.out.println(p.x+"  "+p.y);
-	 }
-	 void update_Textarea()
-	 {
-		 textarea.setText(null); 
-		 for (Fragment unit : f)
-			{
-	        //	System.out.println("segment size:"+unit.getMemsize()+"  remaining size:"+(unit.getMemsize()-unit.getRemaining_size()));
-				if (unit.status == true) 
-				{
-					
-	               size=unit.getMemsize()-unit.getRemaining_size();
-	                
-	               // size+=unit.getRemaining_size();
-					//System.out.print("");
-					textarea.append("Process_Id:"+unit.getProcess_id()+" Process_Size:"+size+" Internal_Fragmentation:"+unit.getRemaining_size());
-				//	System.out.println(",,, Remaining fragment Size : "+ unit.getRemaining_size());
-	            // textarea.append("mayur");
-				}
-	 }
-	 }*/
 	public void paintComponent(Graphics g) 
 	{
-		//textarea.setText("");
-		System.out.println("inside paint");
+
 		size=0;
 		offset=0;
-		//j.setText("hello");
+		g.setColor(Color.gray);
+	
+		 g.fillRect(100+offset/4, 50,256 , 70);
+	
 		g.setColor(Color.CYAN);
-    //   g.drawLine(100, 0, 100, 120);
-      
-      // g.drawLine(0, 50, 500, 50);
-       //g.drawLine(0, 120, 500, 120);
-      
-   //   g.drawRect( 100, 50 , mem_size/4, 70);   // tot_mem_size...
-      // g.drawRect(100, 50, mem_size/8, 70);    //  dividing line of memory
-      
-     // f.setVisible(true); 
+     
        g.setColor(Color.BLUE);
        for (Fragment unit : f)
 		{
@@ -107,9 +64,6 @@ public class View_Fragment3 extends JPanel {
 	                g.setFont(new Font("default", Font.PLAIN, 10));
 	                g.drawString(offset+"", 100+offset/4, 50);
 	                
-               //this.createToolTip().setBounds(100+offset/4, 50, (unit.getMemsize())/4, 70);
-              
-               //g.drawRect(100+size/4+1, 50, (unit.getMemsize()-unit.getRemaining_size())/4-1, 70-1);
 				
 			}
 		//	size+=unit.getMemsize();

@@ -1,6 +1,8 @@
 
 package Model;
 
+
+
 import java.util.ArrayList;
 
 import org.iiitb.model.bean.InvalidMemoryUnitException;
@@ -77,6 +79,11 @@ public class Fragment
 		this.status = true;
 		return this.status;	
 	}
+	public boolean resetstatus()
+	{
+		this.status = false;
+		return this.status;	
+	}
 	public int getProcess_id() {
 		return process_id;
 	}
@@ -105,5 +112,25 @@ public class Fragment
 			System.out.println(m);
 			count++;
 		return fragments;
+	}
+	boolean  removefrom_list(int p_id)
+	{
+		int block_size=0;
+		int address=0;
+		boolean flag=false;
+		for(Fragment as:fragments)
+		{
+//			if(as.process_id == p_id)
+//			{
+//				 block_size=as.mem_size;
+//				 address=as.address;
+//				alloc_list.remove(as);
+//				flag=true;
+//				update_freelist(block_size,address);
+//				break;
+//			}
+		}
+		
+		return flag;
 	}
 }

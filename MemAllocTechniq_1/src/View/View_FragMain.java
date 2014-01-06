@@ -1,5 +1,8 @@
 package View;
+
+
 import java.awt.BorderLayout;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -26,10 +29,12 @@ import Controller.Controller;
 import Model.FirstFitAlgorithm;
 import Model.Fragment;
 import Model.process;
+
 public class View_FragMain extends JFrame implements ActionListener{
 	
-
-
+   
+	ArrayList<process> p_info;
+	process t = new process();
 	// This is page 1 for Buddy System...
 	Fragment f=new Fragment();
 	ArrayList<Fragment> fragments = new ArrayList<>();
@@ -39,6 +44,9 @@ public class View_FragMain extends JFrame implements ActionListener{
 		View_Fragment2 vf2=new View_Fragment2();
 		View_Fragment3 vf3=new View_Fragment3();
 		JTextArea result = new JTextArea(15,20);
+		JTextArea result1 = new JTextArea(15,20);
+		JTextArea result2 = new JTextArea(15,20);
+		JTextArea result3 = new JTextArea(15,20);
 		FirstFitAlgorithm  ff=new FirstFitAlgorithm ();
 		static ArrayList<process> processes = new ArrayList<>();
 		private static final long serialVersionUID = 1L;
@@ -48,7 +56,6 @@ public class View_FragMain extends JFrame implements ActionListener{
 		String pid_string, psize_string;
 		JLabel color_code=new JLabel();
 		JLabel occupy=new JLabel();
-	//	JLabel occupy_color=new JLabel();
 		JLabel empty=new JLabel();
 		JLabel empty_frag=new JLabel();
 		
@@ -74,12 +81,9 @@ public class View_FragMain extends JFrame implements ActionListener{
 		JLabel alloc_or_remove_label= new JLabel();
 		JLabel alloc_or_remove_label1=new JLabel();
 		JLabel alloc_label=new JLabel();
-		//JLabel remove_label=new JLabel();
-		//JLabel pid_label_remove=new JLabel();
 		JTextField tot_mem_size= new JTextField();
 		JTextField pid= new JTextField();
 		JTextField psize= new JTextField();
-		//JTextField pid_remove= new JTextField();
 		JCheckBox c1=new JCheckBox("FirstFit");
 		JCheckBox c2=new JCheckBox("BestFit");
 		JCheckBox c3=new JCheckBox("NextFit");
@@ -87,9 +91,11 @@ public class View_FragMain extends JFrame implements ActionListener{
 		JButton jb_next=new JButton("NEXT");
 		JButton jb_close= new JButton("CLOSE");
 		JButton addmore= new JButton("Add More");
-		//JButton reset= new JButton("Reset");
-		//JButton remove= new JButton("Remove"); 
-	//	JScrollBar scr = new JScrollBar();
+		//---remove  operation
+		JLabel remove_label=new JLabel();
+		JLabel pid_label_remove=new JLabel();
+		JTextField pid_remove= new JTextField();
+		JButton remove= new JButton("Remove"); 
 		public View_FragMain(){
 			init();	 
 		}
@@ -181,33 +187,28 @@ public class View_FragMain extends JFrame implements ActionListener{
 		     addmore.setBounds(80,520,110,30);
 		     addmore.addActionListener(this);
 		     add(addmore);
-		     partitions.setBounds(300,310,200,100);  
+		     partitions.setBounds(60,540,200,80);  
 		     partitions.setText("Available partitions  :  4");
 		     add(partitions);
-		     partition1.setBounds(300,340,200,100);  
+		     partition1.setBounds(60,560,200,80);  
 		     partition1.setText("Partition 1 size  :   132");
 		     add(partition1);
 		     partition2.setVisible(true);
-		     partition2.setBounds(300,370,200,100);  
+		     partition2.setBounds(60,580,200,80);  
 		     partition2.setText("Partition 2 size  :   258");
 		     add(partition2);
 		     partition3.setVisible(true);
-		     partition3.setBounds(300,400,200,100);  
+		     partition3.setBounds(60,600,200,80);  
 		     partition3.setText("Partition 3 size  :   110");
 		     add(partition3);
 		     partition4.setVisible(true);
-		     partition4.setBounds(300,430,200,100);  
+		     partition4.setBounds(60,620,200,80);  
 		     partition4.setText("Partition 4 size  :   524");
 		     add(partition4);
 		     partition1.setVisible(true);
-		  /*   
-		     reset.setBounds(240, 580, 100, 30);
-		     reset.addActionListener(this);
-		     add(reset);
-		     */
 		     
 		     // GUI for REMOVE part...
-		    /* remove_label.setBounds(320, 120, 500, 500);
+		    remove_label.setBounds(320, 120, 500, 500);
 		     remove_label.setForeground(Color.orange);
 		     remove_label.setFont(new Font("Calibre", Font.BOLD, 18));
 		     remove_label.setText("Remove");
@@ -221,21 +222,19 @@ public class View_FragMain extends JFrame implements ActionListener{
 		     
 		     remove.setBounds(180+200, 520, 100, 30);
 		     remove.addActionListener(this);
-		     add(remove);*/
-		    // jb_next.setBounds(600,520,80,30);
-			// jb_next.addActionListener(this);
-			// add(jb_next);Firstfit.setBounds(700,90,500,20);  
-			//vf.setLocation(600, 200);
-			// 320, 140, 70, 25
+		     add(remove);
+		    
 		     Firstfit.setBounds(700,90,500,20);  
 		     Firstfit.setText("FirstFit ");
 		     add(Firstfit);
 		     
-		     
-		     
-		     
+		
 			vf.setBounds(600, 100,400,150);
-			
+			JScrollPane scr0 = new JScrollPane(result);
+			scr0.setBounds(1010, 130, 220, 80);
+			add(scr0, BorderLayout.CENTER);
+			scr0.validate();
+			scr0.setVisible(true);
 		//	vf.setSize(400,400);
 			 add(vf);
 			 BestFit.setBounds(700,240,500,20);  
@@ -244,36 +243,22 @@ public class View_FragMain extends JFrame implements ActionListener{
 			vf1.setBounds(600,250,1000,150);
 			//vf1.setSize(800, 800);
 			 add(vf1);
-				result.setBounds(1010, 130, 220, 80);
-			 
-				JScrollPane scr = new JScrollPane(result);
-			//	scr.setPreferredSize(new Dimension(220, 880));
-			     
-				scr.setBounds(1010, 130, 220, 80);
-				scr.setVerticalScrollBarPolicy(
-	                    JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+				//result.setBounds(1010, 130, 220, 80);
+//				scr.setPreferredSize(new Dimension(220, 880)); 
+				JScrollPane scr = new JScrollPane(result1);
+				scr.setBounds(1010, 300, 220, 80);
+				add(scr, BorderLayout.CENTER);
 				scr.validate();
-				Dimension d = scr.getPreferredSize();
-		        d.setSize(d.width, d.height / 2);
-		        scr.setPreferredSize(d);
-               add(scr, BorderLayout.CENTER);
-
-                
-                //scr.setPreferredSize(new Dimension(220,80));
-            
-                result.setLineWrap(true);
-                result.setEditable(false); //Makes text area
-                scr.setVisible(true);
-                result.setWrapStyleWord(true);
-              //  add(scr, BorderLayout.CENTER);
-                //scr.setViewportView(result);
-                result.append("process_id \n");
-				add(result);
-				 vf2.setBounds(600,400,1000,150);
+				scr.setVisible(true);
+						 vf2.setBounds(600,400,1000,150);
 				 NextFit.setBounds(700,390,500,20);  
 			     NextFit.setText("NextFit ");
 			     add(NextFit);
-
+			     JScrollPane scr1 = new JScrollPane(result2);
+					scr1.setBounds(1010, 470, 220, 80);
+					add(scr1, BorderLayout.CENTER);
+					scr1.validate();
+					scr1.setVisible(true);
 				 add(vf2);
 	                
 				// scr.add(result);
@@ -283,6 +268,11 @@ public class View_FragMain extends JFrame implements ActionListener{
 			     add(WorstFit);
 				 vf3.setBounds(600,550,1000,150);
 					//vf1.setSize(800, 800);
+				 JScrollPane scr2 = new JScrollPane(result3);
+					scr2.setBounds(1010, 600, 220, 80);
+					add(scr2, BorderLayout.CENTER);
+					scr2.validate();
+					scr2.setVisible(true);
 					 add(vf3);
 					 partitions.setVisible(true);
 					Firstfit.setVisible(true);
@@ -297,15 +287,9 @@ public class View_FragMain extends JFrame implements ActionListener{
 			
 		}
 		
-		/*public void paint(Graphics g){
-			super.paint(g);
-		 	
-		 	g.setColor(Color.BLACK);
-	        g.drawLine(300, 375, 300, 600);
-		}
-		*/
-		int count_addmore=-1;
 		
+		int count_addmore=-1;
+		int tmp;
 		
 		int lastpid=-1;
 		
@@ -314,16 +298,7 @@ public class View_FragMain extends JFrame implements ActionListener{
 			// TODO Auto-generated method stub
 			Object o = e.getSource();
 
-			if(o.equals(jb_next))
-			{
-				
-				//JOptionPane.showMessageDialog(null, "Calling to next step");
-				//get_new_arraylist_from_controller();  // NEXT PRESSED SO GET NEW ARRAYLIST FROM CONTROLLER
-				
-				//this.dispose();
-				
-			}
-
+		
 	// /*ADDMORE*/
 			
 	//-------------------------------------------------------------
@@ -332,10 +307,18 @@ public class View_FragMain extends JFrame implements ActionListener{
 			{	
 				
 				this.tot_mem_size.setEditable(false);
-				
+				int ert =0;
+				boolean isx;
 				int check=0;
-				if(Integer.parseInt(this.pid.getText())== lastpid+1){
-					JOptionPane.showMessageDialog(null, "VALID PID  :) ");
+				try{
+					ert = Integer.parseInt(this.pid.getText());
+					isx=true;
+				}
+				 catch (NumberFormatException exp) {
+					  isx= false;
+					}
+				if((ert == (lastpid+1))||(isx)){
+				//	JOptionPane.showMessageDialo(g(null, "VALID PID  :) ");
 					check++;
 				}
 				else{JOptionPane.showMessageDialog(null, "INVALID!!! PID");}
@@ -352,7 +335,7 @@ public class View_FragMain extends JFrame implements ActionListener{
 					}
 				
 				if(isNumber && psize_value>=0){
-					JOptionPane.showMessageDialog(null, "VALID Process Size..");
+				//	JOptionPane.showMessageDialog(null, "VALID Process Size..");
 					check++;
 				}else{
 					JOptionPane.showMessageDialog(null, "INVALID Process size");
@@ -368,7 +351,7 @@ public class View_FragMain extends JFrame implements ActionListener{
 					  isNum= false;
 					}
 				if(isNum && totMemorySize>=0 ){
-					JOptionPane.showMessageDialog(null, "VALID Memory size... ");
+					//JOptionPane.showMessageDialog(null, "VALID Memory size... ");
 					check++;
 				} 
 				else{
@@ -381,7 +364,7 @@ public class View_FragMain extends JFrame implements ActionListener{
 				if(check==3){	
 					//lastpid= Integer.parseInt(this.pid.getText());
 				
-				System.out.println("inside repaint");
+				//System.out.println("inside repaint");
 				mem_size=Integer.parseInt(tot_mem_size.getText());
 				tot_mem_size.disable();
 				if(flag==0)
@@ -391,6 +374,7 @@ public class View_FragMain extends JFrame implements ActionListener{
 				}
 				System.out.println("totalmemsize"+mem_size+"p_id"+Integer.parseInt(pid.getText())+"p_size"+Integer.parseInt(psize.getText()));
 				process p =new process();
+				tmp = Integer.parseInt(pid.getText());
 				p.setProcess_id(Integer.parseInt(pid.getText()));
 				p.setMem_size(Integer.parseInt(psize.getText()));
 				p.setBf_status(false);
@@ -410,23 +394,9 @@ public class View_FragMain extends JFrame implements ActionListener{
 					//result.setText("Allocated fragment "+f.size());
 					
 					}
+	                boolean flag1=processes.get(tmp).isFf_status();				
+					insertlog(flag1,result);
 					
-					for(process p1 : processes)
-					{
-						if(p1.isFf_status())
-						{
-							result.append("process_id: "+p1.getProcess_id()+"  process_size: "+p1.getMem_size()+"\n");
-							add(result);
-							result.setVisible(true);
-						}
-						else if(!p1.isFf_status())
-						{
-							
-							result.append("process_id: "+p1.getProcess_id()+" not allocated with  process_size: "+p1.getMem_size()+"\n");
-							add(result);
-							result.setVisible(true);
-						}
-					}
 					System.out.println("-----------------------------------------------------");
 				//	vf.update_Textarea();
 					vf.updateUI();
@@ -435,14 +405,9 @@ public class View_FragMain extends JFrame implements ActionListener{
 					c2.disable();
 					ArrayList <Fragment> f1=c.input_from_View_to_Controller(2,processes);
 					vf1.set_list(f1,mem_size);
+					boolean flag2=processes.get(tmp).isBf_status();				
+					insertlog(flag2,result1);
 					}
-					/*for(process p1 : processes)
-					{
-						if(!p1.isBf_status())
-						{
-							System.out.println("process_id: "+p1.getProcess_id()+"  process_size: "+p1.getMem_size());
-						}
-					}*/
 					System.out.println("-----------------------------------------------------");
 					//vf1.update_Textarea();
 					vf1.updateUI();
@@ -451,6 +416,8 @@ public class View_FragMain extends JFrame implements ActionListener{
 					//c2.disable();
 					ArrayList <Fragment> f1=c.input_from_View_to_Controller(3,processes);
 					vf2.set_list(f1,mem_size);
+					boolean flag3=processes.get(tmp).isNf_status();				
+					insertlog(flag3,result2);
 					}
 					vf2.updateUI();
 					if(c4.isSelected())
@@ -458,6 +425,8 @@ public class View_FragMain extends JFrame implements ActionListener{
 					//c2.disable();
 					ArrayList <Fragment> f1=c.input_from_View_to_Controller(4,processes);
 					vf3.set_list(f1,mem_size);
+					boolean flag4=processes.get(tmp).isWf_status();				
+					insertlog(flag4,result3);
 					}
 					vf3.updateUI();
 					//this.repaint();
@@ -470,69 +439,106 @@ public class View_FragMain extends JFrame implements ActionListener{
 				//sending_to_controller_to_add(Integer.parseInt(pid.getText()), Integer.parseInt(psize.getText()));
 				
 				
-				}
-			}
-	//-------------------------------------------------------------------------------------------------
-			
+				}}
+
+			// /*REMOVE*/	
+					if(o.equals(remove)){		
+						int remove_id=-1;
+						boolean isNum_remove;
+						try{
+							 				
+							  remove_id = Integer.parseInt(this.pid_remove.getText());
+							  pid_remove.setText(null);
+								JOptionPane.showMessageDialog(null, "Is VALID ID Process ID... press ok to continue...");
+
+							  isNum_remove= true;
+							  // is an integer!
+							} catch (NumberFormatException exp) {
+							  isNum_remove= false;
+							  
+							}
+						
+						if(isNum_remove && remove_id>=0 ){
+							sending_to_controller_to_remove(remove_id);
+							
+						} 
+						else
+							JOptionPane.showMessageDialog(null, "ERROR!! NOT VALID ID! pls enter IDs in incremental fashion as 0 1 2....");
+					}
 	
-
-			
-	/*RESET
-			if(o.equals(reset)){
-				/*Buddy1 b1=new Buddy1();
-				tot_mem_size.setEditable(true);
-				tot_mem_size.setText(null);
-				
-				count_addmore=-1;*/
-				//Main_Buddy.main(null);
-		
-			
-		
-		
-			
-		/*public void output_from_Controller_to_View(ArrayList <Fragment> fragments, int[] mem_not_all, int count,ArrayList <process> processes)
-		{
-			vf.set_list(fragments,mem_size);
-			this.repaint();
-		System.out.println("print here");
-			System.out.println("=========================IN VIEW=================================================");
-			System.out.print("AVAILABLE MEMORY BLOCKS ARE : ");
-			for (Fragment unit : fragments) 
-			{
-				System.out.print(unit.getMemsize()+" ");
-			}
-
-			System.out.println();
-			
-			for (Fragment unit : fragments)
-			{
-				if (unit.status == true) 
-				{
-//					for (int i=0;i<in.length;i++){
-//						if(in[i]==(unit.getMemsize()-unit.getRemaini ng_size())){
-					System.out.print("Allocated memory block no. "+unit.getFragment_id()+" with size "+unit.getMemsize()+" to process P"+unit.getProcess_id()+" with size "+(unit.getMemsize()-unit.getRemaining_size()));
-					
-					System.out.println(",,, Remaining fragment Size : "+ unit.getRemaining_size());
-//					}}
-				}
-
-			}
-			//for loop showing 
-			System.out.println("count "+count);
-			for(int i = 0; i < count; i++) 
-			{  				for (int x=0;x<processes.size();x++){
-				if(processes.get(x).getMem_size()==mem_not_all[i]){
-
-				System.out.println("This Process P"+processes.get(x).getProcess_id()+" HAS NOT BEEN ALLOCATED MEMORY : "+ mem_not_all[i]);
-			} }}
-			
-			System.out.println("~~~~~~~~~~~~END OF ALGO~~~~~~~~~~~~~~\n\n");*/
-
 		}
 
-
-		
-		// after sending_to_controller_to_add CONTROLLER will call this function
-		
+void insertlog(boolean flagx,JTextArea resultx){
+	if(flagx)
+	{
+		resultx.append("Added process_id: " +processes.get(tmp).getProcess_id()+"\n");
+		//add(result);
+		resultx.setVisible(true);
 	}
+	else if(!flagx)
+	{
+		
+		resultx.append("process_id: "+processes.get(tmp).getProcess_id()+" not allocated with  process_size: "+processes.get(tmp).getMem_size()+"\n");
+		//add(result);
+		resultx.setVisible(true);
+	}
+
+}
+
+		public void sending_to_controller_to_remove(int p_id) {
+			/* A FUNCTION IN CONTROLLER... */
+			
+			for (int i =0;i<processes.size();i++){
+//			 System.out.println(processes.get(i).getProcess_id());
+			if(p_id==processes.get(i).getProcess_id())
+			{
+				
+				processes.remove(p_id);
+				if(c1.isSelected())
+				result.append("Removed process_id: "+p_id+"\n");
+				if(c2.isSelected())
+				result1.append("Removed process_id: "+p_id+"\n");
+				if(c3.isSelected())
+				result2.append("Removed process_id: "+p_id+"\n");
+				if(c4.isSelected())
+				result3.append("Removed process_id: "+p_id+"\n");
+				//add(result);
+				result.setVisible(true);
+				
+				try {
+					ArrayList<Fragment> f = c.clear_input_from_View_to_Controller(1,p_id);
+				
+				vf.set_list(f,mem_size);
+				vf.updateUI();
+				ArrayList <Fragment> f1=c.clear_input_from_View_to_Controller(2,p_id);
+				vf1.set_list(f1,mem_size);
+				vf1.updateUI();
+				f1=c.clear_input_from_View_to_Controller(3,p_id);
+				vf2.set_list(f1,mem_size);
+				vf2.updateUI();
+				f1=c.clear_input_from_View_to_Controller(4,p_id);
+				vf3.set_list(f1,mem_size);
+				vf3.updateUI();
+				for( Fragment v :fragments){
+					System.out.println("after delete" +v.getProcess_id());
+				}
+				} catch (InvalidMemoryUnitException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				JOptionPane.showMessageDialog(null, "Successfully Removed!! press ok to continue");
+				
+			}
+			else
+			{
+				JOptionPane.showMessageDialog(null, "There is no process with!! PID="+p_id);
+				
+				
+			}//p_info.clear();
+			
+		}	
+	
+		
+		}}
 

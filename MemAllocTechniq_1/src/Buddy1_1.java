@@ -174,7 +174,7 @@ public class Buddy1_1 extends JFrame implements ActionListener,MouseMotionListen
 			
 			int check=0;
 			if(Integer.parseInt(this.pid.getText())== lastpid+1){
-				JOptionPane.showMessageDialog(null, "VALID PID  :) ");
+				//JOptionPane.showMessageDialog(null, "VALID PID  :) ");
 				check++;
 			}
 			else{JOptionPane.showMessageDialog(null, "INVALID!!! PID");}
@@ -191,7 +191,7 @@ public class Buddy1_1 extends JFrame implements ActionListener,MouseMotionListen
 				}
 			
 			if(isNumber && psize_value>=0){
-				JOptionPane.showMessageDialog(null, "VALID Process Size..");
+				//JOptionPane.showMessageDialog(null, "VALID Process Size..");
 				check++;
 			}else{
 				JOptionPane.showMessageDialog(null, "INVALID Process size");
@@ -207,7 +207,7 @@ public class Buddy1_1 extends JFrame implements ActionListener,MouseMotionListen
 				  isNum= false;
 				}
 			if(isNum && totMemorySize>=0 ){
-				JOptionPane.showMessageDialog(null, "VALID Memory size... ");
+				//JOptionPane.showMessageDialog(null, "VALID Memory size... ");
 				check++;
 			} 
 			else{

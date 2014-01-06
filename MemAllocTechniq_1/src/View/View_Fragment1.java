@@ -67,6 +67,9 @@ public class View_Fragment1 extends JPanel{
 		//System.out.println("inside paint");
 		size=0;
 		offset=0;
+		g.setColor(Color.gray);
+		
+		 g.fillRect(100+offset/4, 50,256 , 70);
 		//j.setText("hello");
 		g.setColor(Color.CYAN);
       //  g.drawLine(100, 0, 100, 120);

@@ -15,7 +15,7 @@ public class Buddy_Animation extends JPanel{
 
 	public void paintComponent(Graphics g) 
 	{
-		//System.out.println("inside paint");
+
 		
 		//j.setText("hello");
 		//g.setColor(Color.BLACK);

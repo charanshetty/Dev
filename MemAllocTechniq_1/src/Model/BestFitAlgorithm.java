@@ -46,15 +46,14 @@ public class BestFitAlgorithm
 		boolean flag=false;
 		if(process_count==0)
 		{
-			System.out.println("inside process_count");
+//			System.out.println("inside process_count");
 			fragments=f.create_Fragment();
-			System.out.println("inside BF "+fragments.size());
+			System.out.println("Available fragments for BestFitAlgorithm  "+fragments.size());
 			for(Fragment f:fragments)
 			{
-				System.out.println(f.fragment_id+" "+f.getMemsize());
+				System.out.println("fragment_id "+f.fragment_id+" has memory size of "+f.getMemsize());
 			}
 		}
-		
 		BestFitAlgorithm ob = new BestFitAlgorithm(); //create the object for parent class
 		flag=ob.bestFit(processes.get(process_count).getMem_size(),process_count, fragments);
 		//processes.get(process_count).setStatus(flag);
@@ -64,5 +63,20 @@ public class BestFitAlgorithm
 		return fragments;						 
 
 	} 
+	
+	public ArrayList<Fragment> clear_input_from_Controller_to_Model(int p_id){
+		process_count--;
+		for(int i =0;i<fragments.size();i++)
+		{
+			if((fragments.get(i).getProcess_id()==p_id)&&(fragments.get(i).getstatus()))
+				{fragments.get(i).set_Size(fragments.get(i).getMemsize());
+				fragments.get(i).setRemaining_size(0, 0);
+				fragments.get(i).resetstatus();
+				}
+			System.out.println("in fragments"+fragments.get(i).getstatus());
+		}
+		return fragments;						 
 
+		
+	}
 }

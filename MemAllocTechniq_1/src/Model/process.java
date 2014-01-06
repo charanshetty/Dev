@@ -1,11 +1,20 @@
 package Model;
 
+
+
+
+
+import java.util.ArrayList;
+
 public class process {
 int process_id;
 int mem_size;
 boolean ff_status;
 boolean bf_status;
 boolean wf_status;
+boolean nf_status;
+
+Fragment db =new Fragment();
 public boolean isWf_status() {
 	return wf_status;
 }
@@ -18,7 +27,7 @@ public boolean isNf_status() {
 public void setNf_status(boolean nf_status) {
 	this.nf_status = nf_status;
 }
-boolean nf_status;
+
 
 public boolean isFf_status() {
 	return ff_status;
@@ -53,5 +62,4 @@ public int getMem_size() {
 public void setMem_size(int mem_size) {
 	this.mem_size = mem_size;
 }
-
 }

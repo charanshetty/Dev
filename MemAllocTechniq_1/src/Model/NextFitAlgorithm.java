@@ -59,7 +59,7 @@ public class NextFitAlgorithm
 		//remaining size = partition size
 		if(process_count==0)
 		{
-			System.out.println("inside process_count");
+//			System.out.println("inside process_count");
 			fragments=f.create_Fragment();
 		}
 		
@@ -71,5 +71,20 @@ public class NextFitAlgorithm
 
 	} 
 
+	
+	public ArrayList<Fragment> clear_input_from_Controller_to_Model(int p_id){
+		process_count--;
+		for(int i =0;i<fragments.size();i++)
+		{
+			if((fragments.get(i).getProcess_id()==p_id)&&(fragments.get(i).getstatus()))
+				{fragments.get(i).set_Size(fragments.get(i).getMemsize());
+				fragments.get(i).setRemaining_size(0, 0);
+				fragments.get(i).resetstatus();
+				}
+			System.out.println("in fragments"+fragments.get(i).getstatus());
+		}
+		return fragments;						 
 
+		
+	}
 }
