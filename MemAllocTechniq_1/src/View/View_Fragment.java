@@ -23,7 +23,7 @@ public class View_Fragment extends JPanel{
 	 int size=0;
 	 int offset=0;
 	
-	 
+		 static int tmp=-1;
 	/* public View_Fragment()
 	 {
 		this.setLayout(null);
@@ -63,6 +63,8 @@ public class View_Fragment extends JPanel{
 	public void paintComponent(Graphics g) 
 	{
 		
+		 
+		 
 		//textarea.setText("");
 	//	System.out.println("inside paint");
 		size=0;
@@ -101,9 +103,12 @@ public class View_Fragment extends JPanel{
                 g.drawString("P"+unit.getProcess_id(), 100+offset/4, 90);
 				
                // size+=unit.getRemaining_size();
-				System.out.print("Allocated memory block no. "+unit.getFragment_id()+" with size "+unit.getMemsize()+" to process P"+unit.getProcess_id()+" with size "+(unit.getMemsize()-unit.getRemaining_size()));
+                if(unit.getProcess_id()!=tmp){
+				System.out.println("First Fit:Allocated memory block no. "+unit.getFragment_id()+" with size "+unit.getMemsize()+" to process P"+unit.getProcess_id()+" with size "+(unit.getMemsize()-unit.getRemaining_size()));
 				
-				System.out.println(",,, Remaining fragment Size : "+ unit.getRemaining_size());
+				//System.out.println(",,, Remaining fragment Size : "+ unit.getRemaining_size());
+				tmp=unit.getProcess_id();
+                }
             // textarea.append("mayur");
 			}
 			else

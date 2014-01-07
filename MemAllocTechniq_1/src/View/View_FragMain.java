@@ -130,13 +130,13 @@ public class View_FragMain extends JFrame implements ActionListener{
 		     c1.setBounds(20,180,100,40);
 		     c1.setText("FirstFit");
 		     add(c1);
-		     color_code.setBounds(200, 180,100,40);
+		     color_code.setBounds(180, 180,120,40);
 		     color_code.setText("Color_Codes:");
 		     add(color_code);
 		     c2.setBounds(20,220,100,40);
 		     c2.setText("BestFit");
 		     add(c2);
-		     occupy.setBounds(200, 220,150,40);
+		     occupy.setBounds(180, 220,170,40);
 		     occupy.setText("Allocated memory:");
 		     add(occupy);
 		     occupy_color.setBounds(350, 230,20,20);
@@ -147,7 +147,7 @@ public class View_FragMain extends JFrame implements ActionListener{
 		     c3.setBounds(20,260,100,40);
 		     c3.setText("NextFit");
 		     add(c3);
-		     empty.setBounds(200, 260,150,40);
+		     empty.setBounds(180, 260,170,40);
 		     empty.setText("Internal Fragmentation:");
 		     add(empty);
 		    empty_color.setBounds(350, 270,20,20);
@@ -156,7 +156,7 @@ public class View_FragMain extends JFrame implements ActionListener{
 		     c4.setBounds(20,300,100,40);
 		     c4.setText("WorstFit");
 		     add(c4);
-		     empty_frag.setBounds(200,300,150,40);
+		     empty_frag.setBounds(180,300,170,40);
 		     empty_frag.setText("Unallocated Partition:");
 		     add(empty_frag);
 		   empty_frag_color.setBounds(350,300,20,20);
@@ -164,7 +164,7 @@ public class View_FragMain extends JFrame implements ActionListener{
 		     add(empty_frag_color);
 		     // ALLOCATE PART..
 		     alloc_label.setBounds(30, 120, 500, 500);
-		     alloc_label.setForeground(Color.orange);
+		     alloc_label.setForeground(Color.RED);
 		     alloc_label.setFont(new Font("Calibre", Font.BOLD, 18));
 		     alloc_label.setText("Allocate");
 		     add(alloc_label);
@@ -209,7 +209,7 @@ public class View_FragMain extends JFrame implements ActionListener{
 		     
 		     // GUI for REMOVE part...
 		    remove_label.setBounds(320, 120, 500, 500);
-		     remove_label.setForeground(Color.orange);
+		     remove_label.setForeground(Color.RED);
 		     remove_label.setFont(new Font("Calibre", Font.BOLD, 18));
 		     remove_label.setText("Remove");
 		     add(remove_label);
@@ -372,7 +372,7 @@ public class View_FragMain extends JFrame implements ActionListener{
 				f.set_Size(mem_size);
 				flag++;
 				}
-				System.out.println("totalmemsize"+mem_size+"p_id"+Integer.parseInt(pid.getText())+"p_size"+Integer.parseInt(psize.getText()));
+				//System.out.println("totalmemsize"+mem_size+"p_id"+Integer.parseInt(pid.getText())+"p_size"+Integer.parseInt(psize.getText()));
 				process p =new process();
 				tmp = Integer.parseInt(pid.getText());
 				p.setProcess_id(Integer.parseInt(pid.getText()));
@@ -418,6 +418,7 @@ public class View_FragMain extends JFrame implements ActionListener{
 					vf2.set_list(f1,mem_size);
 					boolean flag3=processes.get(tmp).isNf_status();				
 					insertlog(flag3,result2);
+					System.out.println("-----------------------------------------------------");
 					}
 					vf2.updateUI();
 					if(c4.isSelected())
@@ -427,8 +428,10 @@ public class View_FragMain extends JFrame implements ActionListener{
 					vf3.set_list(f1,mem_size);
 					boolean flag4=processes.get(tmp).isWf_status();				
 					insertlog(flag4,result3);
+					System.out.println("-----------------------------------------------------");
 					}
 					vf3.updateUI();
+					System.out.println("*********************************************************************");
 					//this.repaint();
 					//c.input_from_View_to_Controller(1,processes);
 					
@@ -449,7 +452,7 @@ public class View_FragMain extends JFrame implements ActionListener{
 							 				
 							  remove_id = Integer.parseInt(this.pid_remove.getText());
 							  pid_remove.setText(null);
-								JOptionPane.showMessageDialog(null, "Is VALID ID Process ID... press ok to continue...");
+								//JOptionPane.showMessageDialog(null, "Is VALID ID Process ID... press ok to continue...");
 
 							  isNum_remove= true;
 							  // is an integer!
@@ -519,6 +522,7 @@ void insertlog(boolean flagx,JTextArea resultx){
 				f1=c.clear_input_from_View_to_Controller(4,p_id);
 				vf3.set_list(f1,mem_size);
 				vf3.updateUI();
+				System.out.println("*********************************************************************");
 				for( Fragment v :fragments){
 					System.out.println("after delete" +v.getProcess_id());
 				}
@@ -528,9 +532,9 @@ void insertlog(boolean flagx,JTextArea resultx){
 				}
 				
 				JOptionPane.showMessageDialog(null, "Successfully Removed!! press ok to continue");
-				
+				break;
 			}
-			else
+			else if((p_id!=processes.get(i).getProcess_id())&&(i==processes.size()-1))
 			{
 				JOptionPane.showMessageDialog(null, "There is no process with!! PID="+p_id);
 				

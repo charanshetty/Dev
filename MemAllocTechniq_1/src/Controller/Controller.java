@@ -97,7 +97,7 @@ public class Controller
 		}
 		 
 		
-		System.out.println("size"+fragments.size());
+		//System.out.println("size"+fragments.size());
 		return fragments;
 		 
 	

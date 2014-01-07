@@ -71,7 +71,7 @@ public void actionPerformed(ActionEvent arg0) {
 		if(o.equals(Next)){
 	process p =new process();
 	if((Integer.parseInt(process_id.getText())>=0)&&(Integer.parseInt(RequiredSize.getText())>0)){
-	System.out.println(Integer.parseInt(process_id.getText()));
+	//System.out.println(Integer.parseInt(process_id.getText()));
 		p.setProcess_id(Integer.parseInt(process_id.getText()));
 	p.setMem_size(Integer.parseInt(RequiredSize.getText()));
 	processes.add(p);
@@ -118,7 +118,7 @@ JOptionPane.showMessageDialog(this,"Error occurred!!!"+ex);
 		System.out.print("AVAILABLE MEMORY BLOCKS ARE : ");
 		for (Fragment unit : fragments) 
 		{
-			System.out.print(unit.getMemsize()+" ");
+		//	System.out.print(unit.getMemsize()+" ");
 		}
 
 		System.out.println();

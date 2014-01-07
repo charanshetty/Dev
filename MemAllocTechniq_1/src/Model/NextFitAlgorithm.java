@@ -27,7 +27,7 @@ public class NextFitAlgorithm
 	{
 	    position =r.nextInt(fragments.size());
 	   is_next=true;
-	   System.out.println("position:"+position);
+	   System.out.println("Next fit with inital position:"+position);
 	}
 		
 	int i=position;

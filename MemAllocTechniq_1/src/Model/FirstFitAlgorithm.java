@@ -8,7 +8,7 @@ import Controller.Controller;
 public class FirstFitAlgorithm 
 {	
 	int jobSize; //input process memory size
-	  // Arraylist of type Fragment	
+	  // Arraylist of Availabletype Fragment	
 	static int process_count=0;
 	Fragment f= new Fragment();
 	static ArrayList<Fragment> fragments=null;
@@ -18,7 +18,7 @@ public class FirstFitAlgorithm
 	{
 		boolean flag=false;
 		for(Fragment unit : fragments) //for loop for arraylist
-		{
+		{ 
 			if((jobSize <= unit.getMemsize()) && (!unit.getstatus())) //find the first unallocated partition 
 			{
 				unit.setstatus(); //setting the status for allocation
@@ -41,14 +41,14 @@ public class FirstFitAlgorithm
 		{
 //			System.out.println("inside process_count");
 			fragments=f.create_Fragment();
-			System.out.println("inside FF "+fragments.size());
+			//System.out.println("inside FF "+fragments.size());
 			for(Fragment f:fragments)
 			{
-				System.out.println(f.fragment_id+" "+f.getMemsize());
+				//System.out.println(f.fragment_id+" "+f.getMemsize());
 			}
 		}
-		for(process p1:processes)
-			System.out.println("here1"+p1.process_id);
+//		for(process p1:processes)
+//			System.out.println("here1"+p1.process_id);
 		FirstFitAlgorithm ob = new FirstFitAlgorithm(); //create the object for parent class
 		flag=ob.firstFit(processes.get(process_count).getMem_size(),process_count, fragments);
 		processes.get(process_count).setFf_status(flag);
@@ -69,8 +69,10 @@ public ArrayList<Fragment> clear_input_from_Controller_to_Model(int p_id){
 			fragments.get(i).setRemaining_size(0, 0);
 			fragments.get(i).resetstatus();
 			}
-		System.out.println("in fragments"+fragments.get(i).getstatus());
-	}
+		else if((fragments.get(i).getProcess_id()!=p_id)&&(i==fragments.size()-1))
+			
+		System.out.println("process p"+p_id+"not present");
+	}	
 	return fragments;						 
 
 	

@@ -14,7 +14,7 @@ import Model.Fragment;
 public class View_Fragment2 extends JPanel{
 
 	 ArrayList<Fragment> f=new ArrayList<Fragment>();
-	
+      static int tmp =-1;	
 	 int mem_size;
 	 int size=0;
 	 int offset=0;
@@ -95,9 +95,12 @@ public class View_Fragment2 extends JPanel{
                 g.drawString("P"+unit.getProcess_id(), 100+offset/4, 90);
 				
                // size+=unit.getRemaining_size();
-				System.out.print("Allocated memory block no. "+unit.getFragment_id()+" with size "+unit.getMemsize()+" to process P"+unit.getProcess_id()+" with size "+(unit.getMemsize()-unit.getRemaining_size()));
-				
-				System.out.println(",,, Remaining fragment Size : "+ unit.getRemaining_size());
+                if(unit.getProcess_id()!=tmp){
+    				System.out.println("Next Fit:Allocated memory block no. "+unit.getFragment_id()+" with size "+unit.getMemsize()+" to process P"+unit.getProcess_id()+" with size "+(unit.getMemsize()-unit.getRemaining_size()));
+    				
+    				//System.out.println(",,, Remaining fragment Size : "+ unit.getRemaining_size());
+    				tmp=unit.getProcess_id();
+                    }
            // textarea.append("mayur");
 			}
 			else

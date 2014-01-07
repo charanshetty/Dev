@@ -109,7 +109,7 @@ public class Fragment
 			
 			Fragment unit3 = new Fragment(4,524, false, 0);
 			fragments.add(unit3);
-			System.out.println(m);
+		//	System.out.println(m);
 			count++;
 		return fragments;
 	}
