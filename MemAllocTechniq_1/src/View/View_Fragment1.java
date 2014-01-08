@@ -63,6 +63,7 @@ public class View_Fragment1 extends JPanel{
 	 }*/
 	public void paintComponent(Graphics g) 
 	{
+		int sum=0;
 		//textarea.setText("");
 		//System.out.println("inside paint");
 		size=0;
@@ -123,6 +124,8 @@ public class View_Fragment1 extends JPanel{
                 //g.drawRect(100+size/4+1, 50, (unit.getMemsize()-unit.getRemaining_size())/4-1, 70-1);
 				
 			}
+			if(unit.getstatus())
+				sum=sum+unit.getRemaining_size();
 		//	size+=unit.getMemsize();
 			offset+=unit.getMemsize();
 		      g.setColor(Color.BLACK);
@@ -135,7 +138,7 @@ public class View_Fragment1 extends JPanel{
             
 			//System.out.println("size: "+size);
 		}
-        
+        System.out.println("Best fit: Internal fragmentation : "+ sum);
         
         
        

@@ -8,7 +8,7 @@ import Controller.Controller;
 public class FirstFitAlgorithm 
 {	
 	int jobSize; //input process memory size
-	  // Arraylist of Availabletype Fragment	
+	  // Arraylist of Availabletype Fragment	)
 	static int process_count=0;
 	Fragment f= new Fragment();
 	static ArrayList<Fragment> fragments=null;
@@ -39,7 +39,8 @@ public class FirstFitAlgorithm
 		boolean flag=false;
 		if(process_count==0)
 		{
-//			System.out.println("inside process_count");
+			System.out.println("inside process_count");
+			f.set_Size(1024);
 			fragments=f.create_Fragment();
 			//System.out.println("inside FF "+fragments.size());
 			for(Fragment f:fragments)
@@ -68,6 +69,8 @@ public ArrayList<Fragment> clear_input_from_Controller_to_Model(int p_id){
 			{fragments.get(i).set_Size(fragments.get(i).getMemsize());
 			fragments.get(i).setRemaining_size(0, 0);
 			fragments.get(i).resetstatus();
+
+			break;
 			}
 		else if((fragments.get(i).getProcess_id()!=p_id)&&(i==fragments.size()-1))
 			

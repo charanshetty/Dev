@@ -30,6 +30,7 @@ public class Fragment
 	public void set_Size(int mem_size)
 	{
 		m=new Memory<MemoryUnit>(mem_size);
+		
 	}
 	public Fragment(int fragment_id,int size,boolean status,int remaining_size) throws InvalidMemoryUnitException
 	{   m.add(new MemoryUnit(prevloc, size));

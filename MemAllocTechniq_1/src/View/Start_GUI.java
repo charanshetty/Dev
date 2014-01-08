@@ -124,6 +124,7 @@ public class Start_GUI extends JFrame implements ActionListener {
 			if(bud.isSelected())
 			{
 				// connect BUDDY SYSTEM here....
+				Buddy1_1 b1 = new Buddy1_1();
 			}
 		}
 		

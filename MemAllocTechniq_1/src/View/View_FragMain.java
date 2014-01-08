@@ -493,7 +493,7 @@ void insertlog(boolean flagx,JTextArea resultx){
 			
 			for (int i =0;i<processes.size();i++){
 //			 System.out.println(processes.get(i).getProcess_id());
-			if(p_id==processes.get(i).getProcess_id())
+			if(p_id==processes.get(i).getProcess_id()&&(!processes.isEmpty()))
 			{
 				
 				processes.remove(p_id);
@@ -507,7 +507,7 @@ void insertlog(boolean flagx,JTextArea resultx){
 				result3.append("Removed process_id: "+p_id+"\n");
 				//add(result);
 				result.setVisible(true);
-				
+				System.out.println("PRocess P"+p_id+"is removed.So corresponding fragment is removed");
 				try {
 					ArrayList<Fragment> f = c.clear_input_from_View_to_Controller(1,p_id);
 				

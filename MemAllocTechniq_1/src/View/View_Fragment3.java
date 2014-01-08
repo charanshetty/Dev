@@ -21,7 +21,7 @@ static int tmp =-1;
 	 JTextArea textarea;
 	public void paintComponent(Graphics g) 
 	{
-
+int sum =0;
 		size=0;
 		offset=0;
 		g.setColor(Color.gray);
@@ -57,6 +57,7 @@ static int tmp =-1;
                     }
            // textarea.append("mayur");
 			}
+			
 			else
 			{
 				g.setColor(Color.BLACK);
@@ -69,6 +70,8 @@ static int tmp =-1;
 	                
 				
 			}
+			if(unit.getstatus())
+				sum=sum+unit.getRemaining_size();
 		//	size+=unit.getMemsize();
 			offset+=unit.getMemsize();
 		      g.setColor(Color.BLACK);
@@ -77,7 +80,7 @@ static int tmp =-1;
 			//System.out.println("size: "+size);
 		}
       
-       
+       System.out.println("Worst fit: Internal fragmentation : "+ sum);
        }      	
 		  
 	

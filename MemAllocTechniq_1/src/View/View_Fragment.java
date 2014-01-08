@@ -22,6 +22,7 @@ public class View_Fragment extends JPanel{
 	 int mem_size;
 	 int size=0;
 	 int offset=0;
+	 
 	
 		 static int tmp=-1;
 	/* public View_Fragment()
@@ -62,7 +63,7 @@ public class View_Fragment extends JPanel{
 	 }*/
 	public void paintComponent(Graphics g) 
 	{
-		
+		int sum=0;	
 		 
 		 
 		//textarea.setText("");
@@ -88,7 +89,7 @@ public class View_Fragment extends JPanel{
         //	System.out.println("segment size:"+unit.getMemsize()+"  remaining size:"+(unit.getMemsize()-unit.getRemaining_size()));
 			if (unit.status == true) 
 			{
-				System.out.println(unit.getProcess_id());
+				//System.out.println(unit.getProcess_id());
 				g.setColor(Color.blue);
 				
                 g.fillRect(100+offset/4, 50, (unit.getMemsize()-unit.getRemaining_size())/4, 70); 
@@ -106,7 +107,7 @@ public class View_Fragment extends JPanel{
                 if(unit.getProcess_id()!=tmp){
 				System.out.println("First Fit:Allocated memory block no. "+unit.getFragment_id()+" with size "+unit.getMemsize()+" to process P"+unit.getProcess_id()+" with size "+(unit.getMemsize()-unit.getRemaining_size()));
 				
-				//System.out.println(",,, Remaining fragment Size : "+ unit.getRemaining_size());
+				
 				tmp=unit.getProcess_id();
                 }
             // textarea.append("mayur");
@@ -127,6 +128,9 @@ public class View_Fragment extends JPanel{
                 //g.drawRect(100+size/4+1, 50, (unit.getMemsize()-unit.getRemaining_size())/4-1, 70-1);
 				
 			}
+			if(unit.getstatus())
+				sum=sum+unit.getRemaining_size();
+			
 		//	size+=unit.getMemsize();
 			offset+=unit.getMemsize();
 		      g.setColor(Color.BLACK);
@@ -135,7 +139,7 @@ public class View_Fragment extends JPanel{
 			//System.out.println("size: "+size);
 		}
        
-        
+        System.out.println("First fit: Internal fragmentation : "+ sum);
         }      	
 		  
 	

@@ -71,7 +71,10 @@ public class WorstFitAlgorithm
 				fragments.get(i).setRemaining_size(0, 0);
 				fragments.get(i).resetstatus();
 				}
-			System.out.println("in fragments"+fragments.get(i).getstatus());
+			else if((fragments.get(i).getProcess_id()!=p_id)&&(i==fragments.size()-1))
+				
+				System.out.println("process p"+p_id+"not present");
+//			System.out.println("in fragments"+fragments.get(i).getstatus());
 		}
 		return fragments;						 
 
