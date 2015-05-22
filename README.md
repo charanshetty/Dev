@@ -1,6 +1,6 @@
 Simulation of contiguous memory allocation techniques.
 
-Following memory allocatio techniques were simulated:
+Following memory allocation techniques were simulated:
 First  fit 
 Best fit
 Next fit
